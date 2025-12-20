@@ -3,7 +3,8 @@
     <h2 class="section-title">Professional Experience</h2>
 
     <div class="exp-card">
-      <h3><Strong>Atyeti Inc</Strong>  <h6>May  2025 - Present</h6></h3>
+      <h3><Strong>Atyeti Inc</Strong></h3>
+      <h6>May  2025 - Present</h6>
       <ul>
         <li>Created and provisioned Azure resources such as Azure Databricks Workspace, Linux Virtual Machines, and Azure Blob Storage (ADLS Gen2) using Terraform for automated, consistent, and scalable infrastructure deployment.</li>
   <li>Implemented <strong>Bronze–Silver–Gold (Medallion) architecture</strong> for scalable, structured data processing.</li>
@@ -21,7 +22,8 @@
     <!-- <h2 class="section-title">Professional Experience</h2> -->
 
     <div class="exp-card">
-      <h3><Strong>Hexaware Technologies</Strong>  <h6>March 2022 - May 2025</h6></h3>
+      <h3><Strong>Hexaware Technologies</Strong> </h3>
+      <h6>March 2022 - May 2025</h6>
       <ul>
          <li>Developed and managed <strong>ADF pipelines</strong> supporting <strong>Full Load</strong> and <strong>Delta/Incremental Load</strong> ingestion patterns for enterprise data integration.</li>
   <li>Expertise in <strong>IBM DataStage 11.7</strong>, <strong>Oracle SQL/PLSQL</strong>, and Unix Shell scripting and Python.</li>

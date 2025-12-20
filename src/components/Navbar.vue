@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar">
-    <div class="logo">&lt;VK /&gt;</div>
+    <!-- <div class="logo">&lt;VK /&gt;</div> -->
 
     <div class="links">
       <a @click.prevent="scrollTo('profile')">About</a>
