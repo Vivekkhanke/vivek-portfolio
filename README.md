@@ -1,5 +1,5 @@
 
-Vivek Khanke — Vue 3 Portfolio (omahir.com style)
+Vivek Khanke — Vue 3 Portfolio
 ===============================================
 
 This is a deploy-ready Vue 3 skeleton built for quick deployment on Vercel / Netlify / GitHub Pages.
