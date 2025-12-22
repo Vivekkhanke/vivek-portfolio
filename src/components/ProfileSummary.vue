@@ -1,5 +1,5 @@
 <template>
-  <section class="section profile">
+  <section id="profile" class="section profile">
     <h2 class="section-title">Profile Summary</h2>
 
     <p>

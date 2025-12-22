@@ -1,12 +1,30 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import "./media-sp.css";
 
 html, body {
   margin: 0;
   padding: 0;
   font-family: 'Inter', sans-serif;
   scroll-behavior: smooth;
-  background: radial-gradient(circle at top, #1e293b 0%, #050617 100%);
+  background-color: #071026; /* fallback base color */
   color: #ffffff;
+  min-height: 100%;
+}
+
+/* Full-screen blurred background layer (visual only) */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 10% 10%, rgba(14,30,60,0.6), rgba(3,6,12,0.85)),
+              linear-gradient(120deg, rgba(99,102,241,0.06), rgba(56,189,248,0.03));
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(18px) saturate(1.05);
+  transform: scale(1.02);
+  opacity: 0.98;
 }
 
 a { text-decoration: none; color: inherit; }
@@ -57,10 +75,22 @@ a { text-decoration: none; color: inherit; }
   border-radius: 16px;
   padding: 20px;
   text-align: center;
-  transition: all 0.3s ease;
+  transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease, opacity 420ms ease;
   cursor: pointer;
 }
 .skill-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(99,102,241,0.25); }
+
+/* Entry reveal for cards */
+.card-animate { opacity: 0; transform: translateY(12px) scale(0.995); transition: transform 420ms cubic-bezier(.2,.9,.2,1), opacity 420ms ease; transition-delay: var(--delay, 0ms); }
+.card-animate.in-view { opacity: 1; transform: translateY(0) scale(1); }
+
+/* Slight hover pop for cert/exp cards */
+.cert-card, .exp-card { transition: transform 260ms cubic-bezier(.2,.9,.2,1), box-shadow 260ms ease, opacity 420ms ease }
+.cert-card.card-animate, .exp-card.card-animate { opacity: 0; transform: translateY(12px); }
+.cert-card.in-view, .exp-card.in-view { opacity: 1; transform: translateY(0); }
+
+/* subtle staggered hover micro-interaction */
+.skill-card:hover, .cert-card:hover, .exp-card:hover { transform: translateY(-8px) scale(1.01) }
 .skill-card img { width: 44px; height: 44px; margin-bottom: 10px; }
 
 /* Experience Cards */

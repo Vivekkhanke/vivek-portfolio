@@ -25,6 +25,11 @@ const skills = [
 
 function scrollToSkill(id) {
   const el = document.getElementById(id)
-  if(el) el.scrollIntoView({behavior:'smooth'})
+  if (el) {
+    const nav = document.querySelector('.navbar')
+    const navHeight = nav ? nav.offsetHeight : 0
+    const y = el.getBoundingClientRect().top + window.pageYOffset - navHeight - 12
+    window.scrollTo({ top: y, behavior: 'smooth' })
+  }
 }
 </script>
