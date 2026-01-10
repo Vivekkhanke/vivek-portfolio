@@ -169,6 +169,7 @@ const closeCertModal = () => {
   selectedCertLink.value = '';
 };
 
+
 const getPreviewUrl = (url) => {
   // Convert Google Drive links to preview mode
   if (url.includes('drive.google.com')) {
@@ -177,4 +178,8 @@ const getPreviewUrl = (url) => {
   // Return other URLs as-is (Credly, Databricks)
   return url;
 };
+
+
 </script>
+
+
