@@ -173,7 +173,13 @@ const skills = [
   { name: 'SQL', icon: 'https://cdn.simpleicons.org/mysql/4479a1' },
   { name: 'ETL', icon: 'https://cdn.simpleicons.org/apacheairflow/38bdf8' },
   { name: 'Unix', icon: 'https://cdn.simpleicons.org/linux/facc15' },
-  { name: 'DataStage', icon: 'https://2.bp.blogspot.com/-Wliu6vxnEHU/VqSQ0mp6b5I/AAAAAAAAAGE/e-TVLu6ezRYkk6miM8FiEOe4tfrmPSxuA/s1600/1_2.-DataStage-1.jpg' }
+  { name: 'DataStage', icon: 'https://2.bp.blogspot.com/-Wliu6vxnEHU/VqSQ0mp6b5I/AAAAAAAAAGE/e-TVLu6ezRYkk6miM8FiEOe4tfrmPSxuA/s1600/1_2.-DataStage-1.jpg' },
+  { name: 'Python', icon: 'https://cdn.simpleicons.org/python/3776ab' },
+  // power bi icon link is not working
+  { name: 'Power BI', icon: 'https://img.icons8.com/?size=100&id=qYfwpsRXEcpc&format=png&color=000000' }
+
+
+
 ];
 
 function handleSkillClick(skill) {

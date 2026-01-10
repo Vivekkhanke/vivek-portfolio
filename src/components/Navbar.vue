@@ -1,26 +1,59 @@
 <template>
   <nav class="navbar">
-    <div class="brand">
-      <div class="logo">Vivek Khanke</div>
-    </div>
+    <div class="logo">Vivek Khanke</div>
 
-    <button class="burger" :class="{ open: showMenu }" @click="toggleMenu" :aria-expanded="showMenu" aria-label="Toggle navigation">
+    <!-- Burger -->
+    <button
+      class="burger"
+      :class="{ open: showMenu }"
+      @click="toggleMenu"
+      aria-label="Toggle navigation"
+    >
       <span class="bar"></span>
       <span class="bar"></span>
       <span class="bar"></span>
     </button>
 
-    <!-- overlay that blurs the page when mobile menu is open -->
+    <!-- Overlay -->
     <div v-if="showMenu" class="mobile-overlay" @click="toggleMenu"></div>
 
+    <!-- Links -->
     <div class="links" :class="{ open: showMenu }">
-      <a :class="{ active: currentSection === 'profile' }" @click.prevent="navAndClose('profile')">About</a>
-      <a :class="{ active: currentSection === 'skills' }" @click.prevent="navAndClose('skills')">Skills</a>
-      <a :class="{ active: currentSection === 'certifications' }" @click.prevent="navAndClose('certifications')">Certifications</a>
-      <a :class="{ active: currentSection === 'experience' }" @click.prevent="navAndClose('experience')">Experience</a>
-      <a :class="{ active: currentSection === 'linkedin' }" href="https://www.linkedin.com/in/vivek-khanke/" target="_blank" @click="setActive('linkedin')">LinkedIn</a>
-      <a :class="{ active: currentSection === 'github' }" href="https://github.com/Vivekkhanke" target="_blank" @click="setActive('github')">GitHub</a>
-      <a class="cv" href="/Vivek_Khanke_CV.pdf" download @click="setActive('cv')">Download CV</a>
+
+      <!-- INTERNAL LINKS -->
+      <a
+        v-for="(item, i) in internalLinks"
+        :key="item.id"
+        :class="{ active: currentSection === item.id }"
+        :style="{ transitionDelay: showMenu ? `${i * 80}ms` : '0ms' }"
+        @click.prevent="navAndClose(item.id)"
+      >
+        {{ item.label }}
+      </a>
+
+      <!-- EXTERNAL LINKS -->
+      <a
+        v-for="(item, i) in externalLinks"
+        :key="item.label"
+        :href="item.href"
+        target="_blank"
+        rel="noopener"
+        :style="{ transitionDelay: showMenu ? `${(i + internalLinks.length) * 80}ms` : '0ms' }"
+        @click="showMenu = false"
+      >
+        {{ item.label }}
+      </a>
+
+      <!-- CV -->
+      <a
+        class="cv"
+        :style="{ transitionDelay: showMenu ? `${(internalLinks.length + externalLinks.length) * 80}ms` : '0ms' }"
+        href="/Vivek_Khanke_CV.pdf"
+        download
+      >
+        Download CV
+      </a>
+
     </div>
   </nav>
 </template>
@@ -31,45 +64,53 @@ import { ref, onMounted, onUnmounted } from 'vue'
 const showMenu = ref(false)
 const currentSection = ref('profile')
 
+const internalLinks = [
+  { id: 'profile', label: 'About' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'certifications', label: 'Certifications' },
+  { id: 'experience', label: 'Experience' }
+]
+
+const externalLinks = [
+  {
+    label: 'LinkedIn',
+    href: 'https://www.linkedin.com/in/vivek-khanke/'
+  },
+  {
+    label: 'GitHub',
+    href: 'https://github.com/Vivekkhanke'
+  }
+]
+
 function toggleMenu() {
   showMenu.value = !showMenu.value
 }
 
-function setActive(id) {
-  currentSection.value = id
-}
-
-function scrollTo(id) {
+function scrollToSection(id) {
   const el = document.getElementById(id)
-  if (el) {
-    const nav = document.querySelector('.navbar')
-    const navHeight = nav ? nav.offsetHeight : 0
-    const y = el.getBoundingClientRect().top + window.pageYOffset - navHeight - 12
-    window.scrollTo({ top: y, behavior: 'smooth' })
-  }
+  if (!el) return
+  const navHeight = document.querySelector('.navbar')?.offsetHeight || 0
+  const y = el.getBoundingClientRect().top + window.scrollY - navHeight - 10
+  window.scrollTo({ top: y, behavior: 'smooth' })
 }
 
 function navAndClose(id) {
-  scrollTo(id)
+  scrollToSection(id)
   currentSection.value = id
   showMenu.value = false
 }
 
-// update active link based on scroll position
 function updateActiveOnScroll() {
-  const sections = ['profile', 'skills', 'certifications', 'experience']
-  const nav = document.querySelector('.navbar')
-  const navHeight = nav ? nav.offsetHeight : 0
-  const threshold = navHeight + 12
-  let found = false
-  for (const id of sections) {
-    const el = document.getElementById(id)
-    if (el) {
-      const rect = el.getBoundingClientRect()
-      if (rect.top <= threshold && rect.bottom > threshold && !found) {
-        currentSection.value = id
-        found = true
-      }
+  const navHeight = document.querySelector('.navbar')?.offsetHeight || 0
+  const threshold = navHeight + 20
+
+  for (const item of internalLinks) {
+    const el = document.getElementById(item.id)
+    if (!el) continue
+    const rect = el.getBoundingClientRect()
+    if (rect.top <= threshold && rect.bottom > threshold) {
+      currentSection.value = item.id
+      break
     }
   }
 }
@@ -85,122 +126,146 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
+/* NAVBAR */
 .navbar {
   position: sticky;
   top: 0;
-  z-index: 100;
+  z-index: 1000;
+  background: rgba(2, 6, 23, 0.9);
+  backdrop-filter: blur(14px);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 20px 40px;
-  background: rgba(2,6,23,0.95);
-  backdrop-filter: blur(12px);
+  justify-content: space-between;
+  padding: 14px 32px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
-.navbar .logo {
-  font-weight: 700;
+/* LOGO */
+.logo {
+  color: #ffffff;
   font-size: 22px;
+  font-weight: 700;
 }
 
-.navbar .links a {
-  margin: 0 14px;
-  color: #ffffff;
-  cursor: pointer;
-  font-weight: 500;
-  transition: transform .25s ease, box-shadow .25s ease, background .2s ease, color .2s ease;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 8px 12px;
-  border-radius: 12px;
-  display: inline-flex;
+/* LINKS */
+.links {
+  display: flex;
   align-items: center;
+  gap: 14px;
 }
 
-.navbar .links a:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 60px rgba(99,102,241,0.12);
+/* GLASS BUTTONS */
+.links a {
   color: #ffffff;
-}
-
-.cv {
-  background: white;
-  color: black;
+  font-weight: 600;
   padding: 10px 18px;
   border-radius: 999px;
-  font-weight: 600;
-  transition: transform 0.2s;
+  cursor: pointer;
+  text-decoration: none;
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.18);
+  transition: background .25s ease, box-shadow .25s ease;
 }
 
-.cv:hover {
-  transform: scale(1.05);
+/* HOVER */
+.links a:hover {
+  background: rgba(255,255,255,0.16);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
 }
 
-/* Burger (hidden on desktop) */
-.burger{
-  display:none;
-  background:none;
-  border:0;
-  padding:8px;
-  cursor:pointer;
-}
-.burger .bar{display:block;width:22px;height:2px;background:#fff;margin:4px 0;border-radius:2px}
-
-/* Responsive: mobile behaviour */
-@media (max-width:767px){
-  .navbar{padding:12px 16px; background:#020617}
-  .navbar .links{display:none;position:fixed;inset:64px 12px 12px 12px;background:#061029;border-radius:12px;flex-direction:column;padding:16px;z-index:200}
-  .navbar .links.open{display:flex}
-  .navbar .links a{margin:10px 0;font-size:16px}
-  .cv{align-self:flex-start}
-  .burger{display:block}
+/* ACTIVE */
+.links a.active {
+  background: rgba(255,255,255,0.22);
+  box-shadow: 0 0 0 2px rgba(255,255,255,0.35);
 }
 
-@media (min-width:768px) and (max-width:1024px){
-  .navbar{padding:14px 24px}
-  .navbar .links{display:flex;gap:12px}
-  .burger{display:none}
-}
-
-/* Active link styles */
-.links a.active{
-  background: linear-gradient(90deg, rgba(11,95,255,0.12), rgba(59,130,246,0.08));
-  color: #3b82f6;
+/* CV */
+.cv {
+  background: rgba(255,255,255,0.9) !important;
+  color: #020617 !important;
   font-weight: 700;
-  padding: 8px 12px;
-  border-radius: 10px;
-  box-shadow: 0 10px 30px rgba(59,130,246,0.08);
-  transform: translateY(-2px);
-}
-.links a.active::after{
-  content: '';
-  display: block;
-  height: 3px;
-  width: 100%;
-  background: linear-gradient(90deg,#0b5fff,#3b82f6);
-  border-radius: 3px;
-  margin-top:6px;
 }
 
-/* Burger -> X animation */
-.burger.open .bar:nth-child(1){
-  transform: translateY(6px) rotate(45deg);
+/* BURGER */
+.burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1100;
 }
-.burger.open .bar:nth-child(2){
+
+.bar {
+  width: 24px;
+  height: 3px;
+  background: #ffffff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+/* Burger animation */
+.burger.open .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+.burger.open .bar:nth-child(2) {
   opacity: 0;
 }
-.burger.open .bar:nth-child(3){
-  transform: translateY(-6px) rotate(-45deg);
+.burger.open .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
-.bar{transition:transform .25s ease, opacity .2s ease}
 
-/* full-screen overlay behind mobile menu that blurs the page */
-.mobile-overlay{
-  position:fixed;
-  inset:0;
-  background: rgba(2,6,23,0.35);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-  z-index:90; /* under navbar (100) but above page content */
+/* OVERLAY */
+.mobile-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(2,6,23,0.6);
+  backdrop-filter: blur(8px);
+  z-index: 900;
+}
+
+/* MOBILE ONLY ANIMATIONS */
+@media (max-width: 768px) {
+  .burger {
+    display: flex;
+  }
+
+  .links {
+    position: fixed;
+    top: 64px;
+    left: 12px;
+    right: 12px;
+    background: rgba(2,6,23,0.85);
+    backdrop-filter: blur(18px);
+    border-radius: 18px;
+    flex-direction: column;
+    padding: 22px;
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+    pointer-events: none;
+    transition: opacity .35s ease, transform .35s ease;
+  }
+
+  .links.open {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+  }
+
+  .links a {
+    width: 100%;
+    justify-content: center;
+    font-size: 16px;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity .4s ease, transform .4s ease;
+  }
+
+  .links.open a {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>
