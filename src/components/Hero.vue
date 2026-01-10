@@ -39,7 +39,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const trophyLink = 'https://drive.google.com/file/d/1AhNFT6-PF3Ggy4vMrDWo5rD71lFcAosO/view?usp=sharing'
+const trophyLink = '/Rank.pdf' // Replace with actual trophy link
 const showTrophyModal = ref(false)
 </script>
 

@@ -1,6 +1,6 @@
 <template>
   <section class="section" id="skills">
-    <h2 class="section-title">Skills</h2>
+    <h2 class="section-title">Technical Skills</h2>
     <div class="grid">
       <div class="skill-card" v-for="s in skills" :key="s.name" @click="handleSkillClick(s)">
         <img :src="s.icon"/>
@@ -161,25 +161,28 @@
 
 <script setup>
 import { ref } from 'vue'
+import { ssrLooseEqual } from 'vue/server-renderer'
 
 const showETLModal = ref(false)
 const showMedallionModal = ref(false)
 
 const skills = [
-  { name: 'Azure', icon: 'https://logo.svgcdn.com/logos/azure.svg' },
+  { name: 'Azure', icon: 'https://img.icons8.com/?size=100&id=VLKafOkk3sBX&format=png&color=000000' },
   { name: 'ADF', icon: 'https://logo.svgcdn.com/devicon/azuredatafactory-original.svg' },
   { name: 'Databricks', icon: 'https://cdn.simpleicons.org/databricks/ff3621' },
+  { name: 'Python', icon: 'https://img.icons8.com/?size=100&id=hGdCwhSHUe6L&format=png&color=000000' },
+  { name: 'Azure SQL', icon: 'https://img.icons8.com/?size=100&id=eWTTfJ5bsN08&format=png&color=000000' },
+  { name: 'ETL', icon: 'https://cdn.simpleicons.org/apacheairflow/38bdf8' },
   { name: 'Oracle', icon: 'https://logo.svgcdn.com/logos/oracle.svg' },
   { name: 'SQL', icon: 'https://cdn.simpleicons.org/mysql/4479a1' },
-  { name: 'ETL', icon: 'https://cdn.simpleicons.org/apacheairflow/38bdf8' },
   { name: 'Unix', icon: 'https://cdn.simpleicons.org/linux/facc15' },
-  { name: 'DataStage', icon: 'https://2.bp.blogspot.com/-Wliu6vxnEHU/VqSQ0mp6b5I/AAAAAAAAAGE/e-TVLu6ezRYkk6miM8FiEOe4tfrmPSxuA/s1600/1_2.-DataStage-1.jpg' },
-  { name: 'Python', icon: 'https://cdn.simpleicons.org/python/3776ab' },
-  // add java
+  { name: 'DataStage', icon: '/DS.png' },
+  { name: 'Power BI', icon: 'https://img.icons8.com/?size=100&id=qYfwpsRXEcpc&format=png&color=000000' },
+  { name: 'PySpark', icon: 'https://img.icons8.com/?size=100&id=UpJmIaNZwNyq&format=png&color=000000' },
   { name: 'Java', icon: 'https://img.icons8.com/?size=100&id=FRRACRKRsw2s&format=png&color=000000' },  
-  { name: 'Perl Scripting', icon: 'https://cdn.simpleicons.org/perl/39457e' },
-  { name: 'Power BI', icon: 'https://img.icons8.com/?size=100&id=qYfwpsRXEcpc&format=png&color=000000' }
-
+  { name: 'Perl', icon: 'https://cdn.simpleicons.org/perl/39457e' },
+  { name: 'HTML/CSS', icon: 'https://img.icons8.com/?size=100&id=20909&format=png&color=000000' },
+  { name: 'Git Hub', icon: 'https://cdn.simpleicons.org/git/f05032' }
 
 
 ];

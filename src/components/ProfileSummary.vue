@@ -3,13 +3,40 @@
     <div class="profile-container">
       <div class="profile-box">
         <h2 class="profile-title">About Me</h2>
-        <p class="profile-description">
-          Data Engineer with 4 years of experience in designing, developing,
-          and optimizing scalable data pipelines on Microsoft Azure.
-          Strong expertise in ETL development, Databricks, Delta Lake,
-          Oracle SQL, PL/SQL, and Unix scripting.
-          Passionate about building secure, high-performance data solutions.
+
+        <p class="profile-description fade-item">
+          I am a <strong>Data Engineer</strong> with over <strong>4+ years of experience</strong> in designing, developing,
+          and optimizing scalable data pipelines on <strong>Microsoft Azure</strong>. I specialize in
+          <strong>ETL development</strong>, <strong>Azure Databricks</strong>, <strong>Delta Lake</strong>,
+          <strong>Oracle SQL/PLSQL</strong>, <strong>Python</strong>, and <strong>Unix scripting</strong>.
         </p>
+
+        <p class="about-text fade-item">
+          I am passionate about building <strong>secure, reliable, and high-performance data solutions</strong>
+          that enable business-critical analytics and informed decision-making.
+        </p>
+
+        <p class="about-text fade-item">
+          I have worked extensively on the <strong>LeasePlan project</strong>, contributing to end-to-end data
+          engineering and cloud migration initiatives. My responsibilities included developing ETL workflows
+          using <strong>IBM DataStage</strong>, performing data analysis, and working with
+          <strong>Oracle databases</strong>.
+        </p>
+
+        <p class="about-text fade-item">
+          As part of the cloud migration, I helped move on-premise workloads to
+          <strong>Azure Data Factory</strong> and <strong>Azure Databricks</strong>. I also played a key role
+          in infrastructure provisioning using <strong>Terraform</strong>, following
+          infrastructure-as-code best practices.
+        </p>
+
+        <p class="about-text fade-item">
+          During the migration phase, I developed <strong>Python scripts</strong> to extract data from Oracle
+          and load it into <strong>Azure SQL Database</strong> and <strong>Databricks</strong>. Additionally,
+          I implemented <strong>Azure Key Vault</strong> integrations in Python and Perl programs to securely
+          manage credentials and secrets.
+        </p>
+
       </div>
     </div>
   </section>
@@ -21,10 +48,8 @@
 }
 
 .profile-container {
-  /* Match hero-content available width: hero max-width (1200) - photo(280) - gap(60) = 860px */
-  max-width: 860px;
-  /* nudge a tiny bit more to the right */
-  margin: 0 2px 0 auto;
+  max-width: 1100px;
+  margin: 0 auto;
 }
 
 .profile-box {
@@ -34,27 +59,56 @@
   padding: 28px;
   backdrop-filter: blur(10px);
   animation: slideUpFade 640ms cubic-bezier(.2,.9,.2,1) both;
-  max-width: 860px;
+  max-width: 1100px;
   width: 100%;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .profile-title {
   font-size: 28px;
   margin: 0 0 20px 0;
   font-weight: 700;
-  color: #fff;
   background: linear-gradient(90deg, #3b82f6, #6366f1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
-.profile-description {
+.profile-description,
+.about-text {
   font-size: 16px;
   line-height: 1.8;
   color: rgba(255, 255, 255, 0.85);
-  margin: 0;
-  text-align: left;
+  margin: 0 0 14px 0;
+  transition: color 0.3s ease;
+}
+
+/* fade-in items */
+.fade-item {
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeInUp 0.7s ease forwards;
+}
+
+.fade-item:nth-child(2) { animation-delay: 0.1s; }
+.fade-item:nth-child(3) { animation-delay: 0.2s; }
+.fade-item:nth-child(4) { animation-delay: 0.3s; }
+.fade-item:nth-child(5) { animation-delay: 0.4s; }
+.fade-item:nth-child(6) { animation-delay: 0.5s; }
+
+/* hover effect */
+.profile-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 50px rgba(59,130,246,0.12);
+}
+
+/* animations */
+@keyframes slideUpFade {
+  from { transform: translateY(12px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Responsive */
@@ -71,17 +125,9 @@
     font-size: 22px;
   }
 
-  .profile-description {
+  .profile-description,
+  .about-text {
     font-size: 14px;
   }
 }
-
-/* entrance animation */
-@keyframes slideUpFade {
-  from { transform: translateY(12px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
-}
-
-/* subtle hover lift for about box */
-.profile-box:hover { transform: translateY(-6px); box-shadow: 0 20px 50px rgba(59,130,246,0.12); }
 </style>
