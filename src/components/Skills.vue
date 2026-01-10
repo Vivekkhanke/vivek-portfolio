@@ -175,7 +175,9 @@ const skills = [
   { name: 'Unix', icon: 'https://cdn.simpleicons.org/linux/facc15' },
   { name: 'DataStage', icon: 'https://2.bp.blogspot.com/-Wliu6vxnEHU/VqSQ0mp6b5I/AAAAAAAAAGE/e-TVLu6ezRYkk6miM8FiEOe4tfrmPSxuA/s1600/1_2.-DataStage-1.jpg' },
   { name: 'Python', icon: 'https://cdn.simpleicons.org/python/3776ab' },
-  // power bi icon link is not working
+  // add java
+  { name: 'Java', icon: 'https://img.icons8.com/?size=100&id=FRRACRKRsw2s&format=png&color=000000' },  
+  { name: 'Perl Scripting', icon: 'https://cdn.simpleicons.org/perl/39457e' },
   { name: 'Power BI', icon: 'https://img.icons8.com/?size=100&id=qYfwpsRXEcpc&format=png&color=000000' }
 
 
