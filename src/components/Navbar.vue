@@ -138,6 +138,36 @@ onUnmounted(() => {
   justify-content: space-between;
   padding: 14px 32px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
+  overflow: hidden;
+  animation: navbarFloat 8s ease-in-out infinite;
+}
+
+/* GLOSSY SHINE */
+.navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 20%,
+    rgba(255,255,255,0.18),
+    transparent 80%
+  );
+  transform: translateX(-120%);
+  animation: navbarShine 6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes navbarShine {
+  0% { transform: translateX(-120%); }
+  50% { transform: translateX(120%); }
+  100% { transform: translateX(120%); }
+}
+
+@keyframes navbarFloat {
+  0% { box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
+  50% { box-shadow: 0 14px 45px rgba(0,0,0,0.35); }
+  100% { box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
 }
 
 /* LOGO */
@@ -156,6 +186,8 @@ onUnmounted(() => {
 
 /* GLASS BUTTONS */
 .links a {
+  position: relative;
+  overflow: hidden;
   color: #ffffff;
   font-weight: 600;
   padding: 10px 18px;
@@ -168,6 +200,25 @@ onUnmounted(() => {
   transition: background .25s ease, box-shadow .25s ease;
 }
 
+/* BUTTON SHINE */
+.links a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent 30%,
+    rgba(255,255,255,0.35),
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  transition: transform .6s ease;
+}
+
+.links a:hover::after {
+  transform: translateX(120%);
+}
+
 /* HOVER */
 .links a:hover {
   background: rgba(255,255,255,0.16);
@@ -177,7 +228,13 @@ onUnmounted(() => {
 /* ACTIVE */
 .links a.active {
   background: rgba(255,255,255,0.22);
-  box-shadow: 0 0 0 2px rgba(255,255,255,0.35);
+  animation: activePulse 2.5s ease-in-out infinite;
+}
+
+@keyframes activePulse {
+  0% { box-shadow: 0 0 0 2px rgba(255,255,255,0.35); }
+  50% { box-shadow: 0 0 20px rgba(255,255,255,0.45); }
+  100% { box-shadow: 0 0 0 2px rgba(255,255,255,0.35); }
 }
 
 /* CV */
@@ -185,6 +242,7 @@ onUnmounted(() => {
   background: rgba(255,255,255,0.9) !important;
   color: #020617 !important;
   font-weight: 700;
+  box-shadow: 0 10px 35px rgba(255,255,255,0.35);
 }
 
 /* BURGER */
@@ -226,7 +284,7 @@ onUnmounted(() => {
   z-index: 900;
 }
 
-/* MOBILE ONLY ANIMATIONS */
+/* MOBILE */
 @media (max-width: 768px) {
   .burger {
     display: flex;
@@ -256,7 +314,6 @@ onUnmounted(() => {
 
   .links a {
     width: 100%;
-    justify-content: center;
     font-size: 16px;
     opacity: 0;
     transform: translateY(12px);

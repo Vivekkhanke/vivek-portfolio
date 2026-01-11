@@ -42,7 +42,7 @@
         </svg>
       </a>
 
-      <!-- Gmail (Correct Logo) -->
+      <!-- Gmail -->
       <a href="mailto:vivekkhanke123@gmail.com" aria-label="Gmail">
         <svg viewBox="0 0 24 24">
           <path
@@ -74,7 +74,19 @@
       </a>
     </div>
 
-    <p class="footer-copy">© 2025 Vivek Khanke</p>
+    <!-- ✅ STATUS + LOCATION (ADDED) -->
+    <div class="footer-status">
+      <span class="status-dot">🟢</span>
+      <span class="status-text">Available</span>
+      <span class="divider">•</span>
+      <span class="location">📍 Pune, India</span>
+    </div>
+
+    <p class="footer-message">
+      Feel free to reach out — I’d love to connect.
+    </p>
+
+    <p class="footer-copy">© 2026 Vivek Khanke</p>
   </footer>
 </template>
 
@@ -103,37 +115,89 @@
   align-items: center;
   justify-content: center;
   background: rgba(255, 255, 255, 0.12);
-  transition: all 0.3s ease;
+  transition: all 0.35s ease;
 }
 
 .icons svg {
   width: 20px;
   height: 20px;
+  fill: #fff;
+  transition: transform 0.3s ease;
 }
 
 .icons a:hover {
-  transform: translateY(-4px) scale(1.1);
-  background: rgba(99, 102, 241, 0.35);
-  box-shadow: 0 0 18px rgba(99, 102, 241, 0.5);
+  transform: translateY(-4px) scale(1.12);
+  background: rgba(99, 102, 241, 0.4);
+  box-shadow:
+    0 0 20px rgba(99, 102, 241, 0.6),
+    0 0 40px rgba(99, 102, 241, 0.35);
 }
 
-.footer-name {
-  font-size: 16px;
-  font-weight: 600;
-  margin-bottom: 4px;
+.icons a:hover svg {
+  transform: scale(1.2) rotate(-6deg);
 }
 
+/* ✅ STATUS */
+.footer-status {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  margin-bottom: 6px;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.footer-status:hover {
+  opacity: 1;
+}
+
+.status-dot {
+  animation: pulse 1.6s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+.divider {
+  margin: 0 4px;
+  opacity: 0.6;
+}
+
+/* MESSAGE */
+.footer-message {
+  font-size: 14px;
+  opacity: 0.85;
+  margin: 6px 0 4px;
+}
+
+.footer-message:hover {
+  color: #a5b4fc;
+}
+
+/* COPYRIGHT */
 .footer-copy {
   font-size: 13px;
   opacity: 0.7;
 }
 
+/* ENTRY */
 .fade {
-  animation: fadeUp 0.8s ease forwards;
+  animation: fadeUp 0.9s ease forwards;
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 </style>

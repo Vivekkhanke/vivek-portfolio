@@ -12,7 +12,7 @@
           @click="openCertModal('/AZ900.pdf', 0)"
         >
           <span class="cert-icon">☁️</span>
-          Microsoft Azure Fundamentals (AZ-900)
+          Microsoft Azure Fundamentals (AZ-900) 👁️‍🗨️
         </div>
 
         <div
@@ -22,7 +22,7 @@
           @click="openCertModal('/DP203.pdf', 1)"
         >
           <span class="cert-icon">☁️</span>
-          Azure Data Engineer (DP-203)
+          Azure Data Engineer (DP-203) 👁️‍🗨️
         </div>
 
         <div
@@ -37,7 +37,7 @@
               class="logo-img"
             />
           </span>
-          Databricks Certified: Databricks Data Engineer Associate
+          Databricks Certified: Databricks Data Engineer Associate 👁️‍🗨️
         </div>
 
         <div
@@ -47,7 +47,7 @@
           @click="openCertModal('/AWS.pdf', 3)"
         >
           <span class="cert-icon">🚀</span>
-          AWS Certified: Cloud Practitioner
+          AWS Certified: Cloud Practitioner 👁️‍🗨️
         </div>
 
         <div
@@ -57,7 +57,7 @@
           @click="openCertModal('/PL300.pdf', 4)"
         >
           <span class="cert-icon">📊</span>
-          Power BI Data Analyst Associate (PL-300)
+          Power BI Data Analyst Associate (PL-300) 👁️‍🗨️
         </div>
 
         <div
@@ -72,7 +72,7 @@
               class="logo-img"
             />
           </span>
-          Python – Data Science
+          Python – Data Science 👁️‍🗨️
         </div>
 
       </div>

@@ -5,10 +5,16 @@
       <div class="hero-photo">
         <img src="../assets/profile.jpg" alt="Vivek Khanke"/>
         <div class="achievement" v-if="trophyLink">
-          <a href="#" @click.prevent="showTrophyModal = true" class="trophy-badge">🏆 Rank 1 Holder - MCA</a>
+          <a
+            href="#"
+            @click.prevent="showTrophyModal = true"
+            class="trophy-badge"
+          >
+            🏆 Rank 1 Holder - MCA 👁️‍🗨️
+          </a>
         </div>
       </div>
-      
+
       <!-- Right: Content -->
       <div class="hero-content">
         <div class="hero-box">
@@ -25,8 +31,8 @@
     <div v-if="showTrophyModal" class="trophy-modal-overlay" @click="showTrophyModal = false">
       <div class="trophy-modal-content" @click.stop>
         <button class="trophy-modal-close" @click="showTrophyModal = false">✕</button>
-        <iframe 
-          :src="`${trophyLink.replace('/view', '/preview')}`" 
+        <iframe
+          :src="`${trophyLink.replace('/view', '/preview')}`"
           class="trophy-iframe"
           frameborder="0"
           allowfullscreen
@@ -39,7 +45,7 @@
 <script setup>
 import { ref } from 'vue'
 
-const trophyLink = '/Rank.pdf' // Replace with actual trophy link
+const trophyLink = '/Rank.pdf'
 const showTrophyModal = ref(false)
 </script>
 
@@ -85,20 +91,48 @@ const showTrophyModal = ref(false)
   text-align: left;
 }
 
-.achievement { margin-top: 12px; display:flex; justify-content:center; }
-.trophy-badge {
-  display: inline-block;
-  padding: 8px 12px;
-  background: linear-gradient(90deg,#ffd54a,#ffb300);
-  color: #111;
-  border-radius: 999px;
-  font-weight: 700;
-  box-shadow: 0 8px 24px rgba(255,180,0,0.12);
-  text-decoration: none;
-  font-size: 14px;
+/* ===== GLASS TROPHY BADGE (UPDATED) ===== */
+.achievement {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
 }
-.trophy-badge:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(255,160,0,0.16); }
 
+.trophy-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 14px;
+
+  /* Glass effect */
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+
+  color: #ffffff;
+  font-weight: 600;
+  font-size: 14px;
+  text-decoration: none;
+
+  box-shadow:
+    inset 0 0 0 rgba(255,255,255,0),
+    0 10px 28px rgba(99, 102, 241, 0.18);
+
+  transition: all 0.35s ease;
+}
+
+.trophy-badge:hover {
+  transform: translateY(-4px) scale(1.05);
+  background: rgba(255, 255, 255, 0.26);
+  box-shadow:
+    0 18px 45px rgba(99, 102, 241, 0.28),
+    0 0 0 1px rgba(255,255,255,0.35);
+}
+
+/* ===== HERO BOX ===== */
 .hero-box {
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(99, 102, 241, 0.2);
@@ -117,7 +151,6 @@ const showTrophyModal = ref(false)
   background: linear-gradient(90deg, #3b82f6, #6366f1);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
 .hero-content h2 {
@@ -134,16 +167,20 @@ const showTrophyModal = ref(false)
   margin: 0;
 }
 
-.hero-description { text-align: left; margin-top: 12px; }
+.hero-description {
+  margin-top: 12px;
+}
 
-/* entrance animation */
+/* Entrance animation */
 @keyframes slideUpFade {
   from { transform: translateY(12px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
 
-/* subtle hover lift for the card */
-.hero-box:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(99,102,241,0.16); }
+.hero-box:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 60px rgba(99,102,241,0.16);
+}
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -175,7 +212,7 @@ const showTrophyModal = ref(false)
   }
 }
 
-/* Trophy Modal Styles */
+/* ===== TROPHY MODAL ===== */
 .trophy-modal-overlay {
   position: fixed;
   inset: 0;
