@@ -15,17 +15,22 @@
     </button>
 
     <!-- Overlay -->
-    <div v-if="showMenu" class="mobile-overlay" @click="toggleMenu"></div>
+    <div
+      v-if="showMenu"
+      class="mobile-overlay"
+      @click="toggleMenu"
+    ></div>
 
     <!-- Links -->
     <div class="links" :class="{ open: showMenu }">
-
       <!-- INTERNAL LINKS -->
       <a
         v-for="(item, i) in internalLinks"
         :key="item.id"
         :class="{ active: currentSection === item.id }"
-        :style="{ transitionDelay: showMenu ? `${i * 80}ms` : '0ms' }"
+        :style="{
+          transitionDelay: showMenu ? `${i * 80}ms` : '0ms'
+        }"
         @click.prevent="navAndClose(item.id)"
       >
         {{ item.label }}
@@ -38,7 +43,11 @@
         :href="item.href"
         target="_blank"
         rel="noopener"
-        :style="{ transitionDelay: showMenu ? `${(i + internalLinks.length) * 80}ms` : '0ms' }"
+        :style="{
+          transitionDelay: showMenu
+            ? `${(i + internalLinks.length) * 80}ms`
+            : '0ms'
+        }"
         @click="showMenu = false"
       >
         {{ item.label }}
@@ -47,13 +56,16 @@
       <!-- CV -->
       <a
         class="cv"
-        :style="{ transitionDelay: showMenu ? `${(internalLinks.length + externalLinks.length) * 80}ms` : '0ms' }"
+        :style="{
+          transitionDelay: showMenu
+            ? `${(internalLinks.length + externalLinks.length) * 80}ms`
+            : '0ms'
+        }"
         href="/Vivek_Khanke_CV.pdf"
         download
       >
         Download CV
       </a>
-
     </div>
   </nav>
 </template>
@@ -89,9 +101,20 @@ function toggleMenu() {
 function scrollToSection(id) {
   const el = document.getElementById(id)
   if (!el) return
-  const navHeight = document.querySelector('.navbar')?.offsetHeight || 0
-  const y = el.getBoundingClientRect().top + window.scrollY - navHeight - 10
-  window.scrollTo({ top: y, behavior: 'smooth' })
+
+  const navHeight =
+    document.querySelector('.navbar')?.offsetHeight || 0
+
+  const y =
+    el.getBoundingClientRect().top +
+    window.scrollY -
+    navHeight -
+    10
+
+  window.scrollTo({
+    top: y,
+    behavior: 'smooth'
+  })
 }
 
 function navAndClose(id) {
@@ -101,12 +124,15 @@ function navAndClose(id) {
 }
 
 function updateActiveOnScroll() {
-  const navHeight = document.querySelector('.navbar')?.offsetHeight || 0
+  const navHeight =
+    document.querySelector('.navbar')?.offsetHeight || 0
+
   const threshold = navHeight + 20
 
   for (const item of internalLinks) {
     const el = document.getElementById(item.id)
     if (!el) continue
+
     const rect = el.getBoundingClientRect()
     if (rect.top <= threshold && rect.bottom > threshold) {
       currentSection.value = item.id
@@ -117,7 +143,9 @@ function updateActiveOnScroll() {
 
 onMounted(() => {
   updateActiveOnScroll()
-  window.addEventListener('scroll', updateActiveOnScroll, { passive: true })
+  window.addEventListener('scroll', updateActiveOnScroll, {
+    passive: true
+  })
 })
 
 onUnmounted(() => {
@@ -137,37 +165,7 @@ onUnmounted(() => {
   align-items: center;
   justify-content: space-between;
   padding: 14px 32px;
-  border-bottom: 1px solid rgba(255,255,255,0.1);
-  overflow: hidden;
-  animation: navbarFloat 8s ease-in-out infinite;
-}
-
-/* GLOSSY SHINE */
-.navbar::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent 20%,
-    rgba(255,255,255,0.18),
-    transparent 80%
-  );
-  transform: translateX(-120%);
-  animation: navbarShine 6s ease-in-out infinite;
-  pointer-events: none;
-}
-
-@keyframes navbarShine {
-  0% { transform: translateX(-120%); }
-  50% { transform: translateX(120%); }
-  100% { transform: translateX(120%); }
-}
-
-@keyframes navbarFloat {
-  0% { box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
-  50% { box-shadow: 0 14px 45px rgba(0,0,0,0.35); }
-  100% { box-shadow: 0 8px 30px rgba(0,0,0,0.25); }
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* LOGO */
@@ -186,63 +184,35 @@ onUnmounted(() => {
 
 /* GLASS BUTTONS */
 .links a {
-  position: relative;
-  overflow: hidden;
   color: #ffffff;
   font-weight: 600;
   padding: 10px 18px;
   border-radius: 999px;
   cursor: pointer;
   text-decoration: none;
-  background: rgba(255,255,255,0.08);
+  background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.18);
-  transition: background .25s ease, box-shadow .25s ease;
-}
-
-/* BUTTON SHINE */
-.links a::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    120deg,
-    transparent 30%,
-    rgba(255,255,255,0.35),
-    transparent 70%
-  );
-  transform: translateX(-120%);
-  transition: transform .6s ease;
-}
-
-.links a:hover::after {
-  transform: translateX(120%);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  transition: background 0.25s ease, box-shadow 0.25s ease;
 }
 
 /* HOVER */
 .links a:hover {
-  background: rgba(255,255,255,0.16);
-  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
 /* ACTIVE */
 .links a.active {
-  background: rgba(255,255,255,0.22);
-  animation: activePulse 2.5s ease-in-out infinite;
-}
-
-@keyframes activePulse {
-  0% { box-shadow: 0 0 0 2px rgba(255,255,255,0.35); }
-  50% { box-shadow: 0 0 20px rgba(255,255,255,0.45); }
-  100% { box-shadow: 0 0 0 2px rgba(255,255,255,0.35); }
+  background: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.35);
 }
 
 /* CV */
 .cv {
-  background: rgba(255,255,255,0.9) !important;
+  background: rgba(255, 255, 255, 0.9) !important;
   color: #020617 !important;
   font-weight: 700;
-  box-shadow: 0 10px 35px rgba(255,255,255,0.35);
 }
 
 /* BURGER */
@@ -268,9 +238,11 @@ onUnmounted(() => {
 .burger.open .bar:nth-child(1) {
   transform: translateY(8px) rotate(45deg);
 }
+
 .burger.open .bar:nth-child(2) {
   opacity: 0;
 }
+
 .burger.open .bar:nth-child(3) {
   transform: translateY(-8px) rotate(-45deg);
 }
@@ -279,7 +251,7 @@ onUnmounted(() => {
 .mobile-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(2,6,23,0.6);
+  background: rgba(2, 6, 23, 0.6);
   backdrop-filter: blur(8px);
   z-index: 900;
 }
@@ -295,7 +267,7 @@ onUnmounted(() => {
     top: 64px;
     left: 12px;
     right: 12px;
-    background: rgba(2,6,23,0.85);
+    background: rgba(2, 6, 23, 0.85);
     backdrop-filter: blur(18px);
     border-radius: 18px;
     flex-direction: column;
@@ -303,7 +275,7 @@ onUnmounted(() => {
     opacity: 0;
     transform: translateY(-10px) scale(0.98);
     pointer-events: none;
-    transition: opacity .35s ease, transform .35s ease;
+    transition: opacity 0.35s ease, transform 0.35s ease;
   }
 
   .links.open {
@@ -314,10 +286,11 @@ onUnmounted(() => {
 
   .links a {
     width: 100%;
+    justify-content: center;
     font-size: 16px;
     opacity: 0;
     transform: translateY(12px);
-    transition: opacity .4s ease, transform .4s ease;
+    transition: opacity 0.4s ease, transform 0.4s ease;
   }
 
   .links.open a {
