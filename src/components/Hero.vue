@@ -13,7 +13,7 @@
       <div class="hero-content">
         <div class="hero-box">
           <h1>Hi, I'm Vivek Khanke</h1>
-          <h2>Sr. Software Engineer</h2>
+          <h2>Data Engineer</h2>
           <p class="hero-description">
             Experienced in designing scalable, high-performance ETL data pipelines on Azure Cloud leveraging Databricks and Oracle SQL. Strong expertise in ETL development, Delta Lake, IBM DataStage, Unix shell scripting, and Python programming.
           </p>
