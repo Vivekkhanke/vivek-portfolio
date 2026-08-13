@@ -28,7 +28,8 @@
   <li>Developed a <strong>DataStage sequence job</strong> based on business requirements for <strong>generating invoices</strong>, ensuring automated, accurate, and efficient invoice processing.</li>
   <li>Migrated legacy <strong>IBM DataStage ETL jobs</strong> to <strong>Azure Data Factory (ADF)</strong> by redesigning end-to-end data pipelines, dataflows, dependencies, and scheduling.</li>
   <li>Worked on <strong>IBM DataStage migration</strong> projects, ensuring smooth transition between versions and environments.</li>
-  <li>Implemented advanced SQL logic (window functions, subqueries, aggregates).</li>
+  <li>mplemented data cleansing, incremental loads, SCD Type 1/2, performance optimization, and production monitoring across bronze, silver, 
+and gold layers</li>
   <li>Developed and optimized PLSQL triggers, stored procedures, and functions for automation and data integrity.</li>
   <li>Automated ETL job parameters and file handling using Unix shell scripting.</li>
   <li>Worked closely with clients to understand data requirements and deliver ETL solutions.</li>
