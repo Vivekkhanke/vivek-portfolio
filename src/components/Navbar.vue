@@ -2,6 +2,7 @@
   <header class="nav-wrap" :class="{ scrolled }">
     <nav class="navbar">
       <a class="logo" href="#top" aria-label="Vivek Khanke — back to top" @click.prevent="scrollTo('top')">
+        <img class="logo-mark" src="/logo.svg" alt="" width="40" height="40" />
         <span class="wordmark">
           <span class="name">Vivek Khanke</span>
           <span class="tagline">Data Engineer</span>
@@ -134,6 +135,18 @@ onBeforeUnmount(() => {
   font-weight: 700;
   font-size: 20px;
 }
+.logo-mark {
+  width: 40px;
+  height: 40px;
+  flex: 0 0 auto;
+  border-radius: 11px;
+  box-shadow: 0 8px 24px -10px rgba(56, 189, 248, 0.7);
+  transition: transform 0.3s var(--ease-out), box-shadow 0.3s;
+}
+.logo:hover .logo-mark {
+  transform: translateY(-2px) rotate(-2deg);
+  box-shadow: 0 12px 28px -10px rgba(56, 189, 248, 0.9);
+}
 .wordmark { display: flex; flex-direction: column; line-height: 1.15; }
 .name { font-size: 17px; font-weight: 600; letter-spacing: -0.01em; white-space: nowrap; }
 .tagline {
@@ -146,6 +159,10 @@ onBeforeUnmount(() => {
   color: var(--muted);
 }
 @media (max-width: 480px) { .right .icon { display: none; } }
+@media (max-width: 480px) {
+  .logo-mark { width: 36px; height: 36px; border-radius: 10px; }
+  .tagline { display: none; }
+}
 .links { display: flex; gap: 4px; }
 .links a {
   position: relative;
